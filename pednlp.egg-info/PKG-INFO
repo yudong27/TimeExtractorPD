@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: pednlp
+Version: 0.0.1
+Summary: Chinese NLP Preprocessing & Parsing
+Home-page: https://github.com/yudong27/TimeExtractorPD
+Author: yudong27
+Author-email: yuu1010@qq.com
+License: Apache License 2.0
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+License-File: LICENSE

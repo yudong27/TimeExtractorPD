@@ -8,11 +8,15 @@
 
 import cn2an    
 import json
+import os
 from ply.lex import TOKEN
 from functools import wraps
 from .timeformat import TimeFormat
 from types import FunctionType
 
+
+DIR_PATH = os.path.dirname(os.path.abspath(__file__))
+GRAND_DIR_PATH = os.path.dirname(DIR_PATH)
 
 code_template = '''
 def foo(self, t):
@@ -59,7 +63,8 @@ def convert_to_int(s):
 
 def load_reign_title():
     reign_title = {}
-    with open("data/china_reign_title.json", "r", encoding="utf-8") as f:
+    path = os.path.join(DIR_PATH, "data", "china_reign_title.json")
+    with open(path, "r", encoding="utf-8") as f:
         data = json.loads(f.read())
     return data.keys()
 

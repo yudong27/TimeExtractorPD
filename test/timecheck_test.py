@@ -30,7 +30,3 @@ b = time.time()
 print("TIME:", b-a)
 for k in r:
     print(k)
-print("===================== AGAIN ======================")
-r = time_checker.parse(text)
-for k in r:
-    print(k)

@@ -15,8 +15,8 @@ import cn2an
 class TimeChecker(object):
     def __init__(self):
         self.format_seq_max = 0 # 保存timeformat序列的最大值
-        self.stack = []
-        self.maybe_wrong_time_format = []
+        #self.stack = []
+        #self.maybe_wrong_time_format = []
 
     def add_time_format(self, time_format:TimeFormat):
         for tf in self.maybe_wrong_time_format:

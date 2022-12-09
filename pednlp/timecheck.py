@@ -13,8 +13,9 @@ from .utils import register, convert_to_int
 import cn2an
 
 class TimeChecker(object):
-    def __init__(self):
+    def __init__(self, debug=False):
         self.format_seq_max = 0 # 保存timeformat序列的最大值
+        self.debug = debug
         #self.stack = []
         #self.maybe_wrong_time_format = []
 
@@ -107,6 +108,27 @@ class TimeChecker(object):
         if day_wrong:
             self.add_time_format(day)
             
+    @register("DAY_STRING SEP_CHAR DAY_STRING")
+    def c_day_seqs(self):
+        day1 = self.stack[-3]
+        day2 = self.stack[-1]
+        day_wrong = False
+        assert 'type' in day1.extra_info, "run c_day first"
+        assert 'type' in day2.extra_info, "run c_day first"
+        if day1.extra_info["type"] != day2.extra_info["type"]:
+            day_wrong = True
+            day2.tips.append("和前面日期的数字形式不一致")
+        if day1.value[-1] != day2.value[-1]:
+            day_wrong = True
+            day2.tips.append("前面用了{}，此处用了{}， 不一致".format(day1.value[-1], day2.value[-1]))
+        if day1.extra_info["val"] >= day2.extra_info['val']:
+            day_wrong = True
+            day2.tips.append("此日期≤前面日期")
+        if day_wrong:
+            self.add_time_format(day2)
+
+
+
 
     def c_error(self):
         self.stack = []
@@ -130,6 +152,8 @@ class TimeChecker(object):
                         matched = False
                         break
                 if matched:
+                    if self.debug:
+                        print("pattern:{} func:{}".format(ps, ks))
                     func(self)
 
     
@@ -138,6 +162,8 @@ class TimeChecker(object):
         self.stack = []
         self.maybe_wrong_time_format = []
         for tok in lexer:
+            if self.debug:
+                print(tok)
             self.stack.append(tok.value)
             if tok.type == 'error':
                 self.c_error()

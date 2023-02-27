@@ -13,3 +13,5 @@ __version__ = '0.0.1'
 
 import os
 from .timecheck import TimeChecker
+time_checker = TimeChecker()
+parse = time_checker.parse

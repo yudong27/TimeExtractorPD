@@ -62,6 +62,10 @@ class TimeChecker(object):
     @register("DAY_STRING")
     def c_day(self):
         tfm = self.stack[-1]
+        # 特殊规则，如果只有"xx号"，前面没有月份，可能是地址
+        if tfm.value[-1] == "号":
+            if len(self.stack) < 2 or self.stack[-2].token_type != "MONTH_STRING":
+                return
         info = convert_to_int(tfm.value[:-1].strip())
         for k,v in info.items():
             tfm.extra_info[k] = v

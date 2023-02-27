@@ -20,13 +20,15 @@ text1 = '''2021年中秋节前两天来大寒的我们兰拉风老年康熙八�
     上上周星期7
     第13个月份
     '''
-text1 = text1*100
-print(len(text1))
+
+text2 = "沙太南路1023-1063号。马岗大道33号。12月11号，1月35号。"
+#text1 = text1*100
+#print(len(text1))
 time_checker = pednlp.TimeChecker(debug=False)
 #print(register)
 a = time.time()
-r = time_checker.parse(text1)
+r = time_checker.parse(text2)
 b = time.time()
 print("TIME:", b-a)
-#for k in r:
-#    print(k)
+for k in r:
+    print(k)

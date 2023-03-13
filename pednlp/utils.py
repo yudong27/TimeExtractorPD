@@ -49,6 +49,9 @@ def MAKEFUNC(func):
 
 
 def convert_to_int(s):
+    # "百年"无法解析
+    if isinstance(s, str) and len(s) >0 and s[0] in ['百','千','万']:
+        return {}
     try:
         val = int(s)
         return {"val": val, "type":"digit"}

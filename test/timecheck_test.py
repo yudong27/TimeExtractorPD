@@ -19,14 +19,17 @@ text1 = '''2021年中秋节前两天来大寒的我们兰拉风老年康熙八�
     第八个星期五
     上上周星期7
     第13个月份
+    百年奋斗目标
     '''
-text1 = text1*100
+#text1 = text1*100
 print(len(text1))
+print(text1)
 time_checker = pednlp.TimeChecker(debug=False)
 #print(register)
 a = time.time()
-r = time_checker.parse(text1)
+#r = time_checker.parse(text1)
+r = pednlp.parse(text1)
 b = time.time()
 print("TIME:", b-a)
-#for k in r:
-#    print(k)
+for k in r:
+    print(k)

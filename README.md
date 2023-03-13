@@ -7,9 +7,8 @@ pip install .
 ## 使用
 ```python
 import pednlp
-tc = pednlp.TimeChecker()
 text = "淳熙200年"
-result = tc.parse(text)
+result = pednlp.parse(text)
 for r in result:
     print(r)
 ```
